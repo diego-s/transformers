@@ -236,6 +236,9 @@ def main():
     )
 
     # Training
+    special_tokens_dict = {'bos_token': '<BOS>', 'eos_token': '<EOS>', 'pad_token': '<PAD>'}
+    num_added_toks = tokenizer.add_special_tokens(special_tokens_dict)
+    model.resize_token_embeddings(len(tokenizer))
     if training_args.do_train:
         model_path = (
             model_args.model_name_or_path
